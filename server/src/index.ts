@@ -7,6 +7,7 @@ import { startPoller } from "./poller.js";
 const app = express();
 
 app.get("/api/health", (req, res) => {
+  res.set("Cache-Control", "no-store");
   res.json(getAllCache());
 });
 

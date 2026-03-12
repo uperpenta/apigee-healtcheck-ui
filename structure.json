@@ -1,0 +1,40 @@
+{
+  "status": "{overallStatus}",
+  "responseDateTime": "{responseDateTime}",
+  "components": {
+    "Apigee": {
+      "status": "{apigeeStatus}",
+      "details": {
+        "proxy": {
+          "name": "{proxyName}",
+          "release": "{proxyRelease}",
+          "revision": "{proxyRevision}",
+          "status": "{proxyStatus}"
+        }
+      }
+    },
+    "backends": {
+      "status": "{backendsStatus}",
+      "details": {
+        "{backendName}": {
+          "serviceUri": "{backendServiceUri}",
+          "responseDateTime": "{backendResponseDateTime}",
+          "StatusCode": "{backendStatusCode}",
+          "ReasonPhrase": "{backendReasonPhrase}",
+          "status": "{backendStatus}",
+          "statusMessage": "{backendStatusMessage}",
+          "swagger-version": "{backendSwaggerVersion}"
+        },
+        "{backendName2}": {
+          "serviceUri": "{backendServiceUri}",
+          "responseDateTime": "{backendResponseDateTime}",
+          "StatusCode": "{backendStatusCode}",
+          "ReasonPhrase": "{backendReasonPhrase}",
+          "status": "{backendStatus}",
+          "statusMessage": "{backendStatusMessage}",
+          "swagger-version": "{backendSwaggerVersion}"
+        }
+      }
+    }
+  }
+}

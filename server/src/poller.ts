@@ -27,7 +27,7 @@ const pollAll = () => {
 };
 
 export const startPoller = () => {
-  pollAll(); // fetch immediately on startup
-  setInterval(pollAll, POLL_INTERVAL_MS); // then every 10 min
+  pollAll(); 
+  setInterval(pollAll, POLL_INTERVAL_MS);
   console.log(`Poller started — interval: ${POLL_INTERVAL_MS}ms`);
 };

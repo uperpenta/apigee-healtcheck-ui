@@ -3,8 +3,24 @@ import { PORT, environments } from "./config.js";
 import type { EnvName } from "./config.js";
 import { getCache, getAllCache } from "./cache.js";
 import { startPoller } from "./poller.js";
+import cors from "cors";
+import rateLimit from "express-rate-limit";
 
 const app = express();
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000, 
+  max: 30,
+  message: { error: "Too many requests, try again later" },
+});
+
+app.use(
+  cors({
+    origin: ["http://localhost:5173"], //change with actual url
+  }),
+);
+
+app.use('/api', limiter);
 
 app.get("/api/health", (req, res) => {
   res.set("Cache-Control", "no-store");

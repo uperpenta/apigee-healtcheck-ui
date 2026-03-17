@@ -6,13 +6,15 @@ export interface ProxyDetails {
 }
 
 export interface BackendDetails {
-  serviceUri: string;
-  responseDateTime: string;
-  StatusCode: string;
-  ReasonPhrase: string;
+  serviceUri?: string;
+  responseDateTime?: string;
+  StatusCode: string | number;
+  ReasonPhrase: string | null;
   status: string;
-  statusMessage: string;
-  "swagger-version": string;
+  statusMessage?: string;
+  "swagger-version"?: string;
+  "content-type"?: string;
+  resposeBody?: unknown;
 }
 
 export interface HealthResponse {

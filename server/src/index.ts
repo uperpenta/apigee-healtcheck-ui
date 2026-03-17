@@ -5,6 +5,7 @@ import { getCache, getAllCache } from "./cache.js";
 import { startPoller } from "./poller.js";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
+import logger from "./logger.js";
 
 const app = express();
 
@@ -42,5 +43,5 @@ app.get("/api/health/:env", (req, res) => {
 startPoller();
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  logger.info(`Server running on port ${PORT}`);
 });

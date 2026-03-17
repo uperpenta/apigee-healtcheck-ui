@@ -2,10 +2,11 @@ import { environments, POLL_INTERVAL_MS, isDev } from "./config.js";
 import type { EnvName } from "./config.js";
 import { setCache } from "./cache.js";
 import { mockResponse } from "./mock.js";
+import logger from "./logger.js";
 
 const fetchHealth = async (env: EnvName) => {
   if (isDev) {
-    console.log(`[mock] ${env}`);
+    logger.info(`[mock] ${env}`);
     setCache(env, mockResponse(env));
     return;
   }
@@ -14,9 +15,9 @@ const fetchHealth = async (env: EnvName) => {
     const res = await fetch(environments[env]);
     const data = await res.json();
     setCache(env, data);
-    console.log(`[poll] ${env} — ${data.status}`);
+    logger.info(`[poll] ${env} — ${data.status}`);
   } catch (err) {
-    console.error(`[poll] ${env} failed:`, err);
+    logger.error(`[poll] ${env} failed`, err instanceof Error ? err : new Error(String(err)));
   }
 };
 
@@ -27,7 +28,7 @@ const pollAll = () => {
 };
 
 export const startPoller = () => {
-  pollAll(); 
+  pollAll();
   setInterval(pollAll, POLL_INTERVAL_MS);
-  console.log(`Poller started — interval: ${POLL_INTERVAL_MS}ms`);
+  logger.info(`Poller started — interval: ${POLL_INTERVAL_MS}ms`);
 };
